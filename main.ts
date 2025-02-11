@@ -1,26 +1,45 @@
-controller.player2.onButtonEvent(ControllerButton.A, ControllerButtonEvent.Pressed, function () {
-    simplified.moveToRandomHoleOnGrid(myMole)
+controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
+    currentSetIndex += 1
+    if (currentSetIndex >= rhymingSets.length) {
+        // Wrap around to the first set
+        currentSetIndex = 0
+    }
+    // Start at the first word of the new set
+    currentWordIndex = 0
+    showCurrentWord()
 })
-sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
-    info.changeScoreBy(1)
-    simplified.moveToRandomHoleOnGrid(myMole)
-    animation.runImageAnimation(
-    myHammer,
-    assets.animation`hammerAnimation`,
-    50,
-    false
-    )
-    music.magicWand.play()
+controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
+    currentWordIndex += 1
+    if (currentWordIndex >= rhymingSets[currentSetIndex].length) {
+        // Wrap around to the first word in the set
+        currentWordIndex = 0
+    }
+    showCurrentWord()
 })
-let myHammer: Sprite = null
-let myMole: Sprite = null
-game.showLongText("Player 1: Use the arrow keys to move the hammer. Player 2: Press U to move the mole.", DialogLayout.Center)
-scene.setBackgroundImage(assets.image`grid`)
-myMole = sprites.create(assets.image`mole`, SpriteKind.Enemy)
-myHammer = sprites.create(assets.image`hammer`, SpriteKind.Player)
-simplified.moveOnlyOnscreenWithArrows(myHammer, simplified.Speeds.Fast)
-carnival.startCountdownGame(15, carnival.WinTypes.Multi)
-carnival.addLabelTo("Whack-the-Mole", carnival.Areas.Bottom)
-game.onUpdateInterval(1000, function () {
-    simplified.checkMoleEscape(mp.playerSelector(mp.PlayerNumber.Two), 1)
-})
+function showCurrentWord () {
+    // Clear the sprite image to a
+    // Grab the current word
+    word = rhymingSets[currentSetIndex][currentWordIndex]
+    textSprite.setText(word)
+}
+let word = ""
+let currentWordIndex = 0
+let currentSetIndex = 0
+let textSprite: TextSprite = null
+let rhymingSets: string[][] = []
+rhymingSets = [
+["cat", "bat", "mat"],
+["dog", "hog", "log"],
+["pin", "tin", "win"],
+["pet", "let", "set"],
+["mop", "top", "hop"],
+["can", "fan", "pan"],
+["red", "bed", "fed"],
+["run", "fun", "sun"],
+["bug", "dug", "hug"],
+["lip", "sip", "dip"]
+]
+textSprite = textsprite.create("", 15, 3)
+textSprite.setMaxFontHeight(20)
+textSprite.setPosition(10, 60)
+showCurrentWord()
