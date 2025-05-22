@@ -14,3 +14,5 @@ _site
 .vscode
 .pytest_cache
 __pycache__
+
+results.xml
