@@ -1,33 +1,12 @@
- 
+Script 
 
+docker ps 
 
-> Open this page at [https://saurabh500.github.io/makecodestuff/](https://saurabh500.github.io/makecodestuff/)
+docker run -it  ubuntu:24.04 cat /etc/os-release
 
-## Use as Extension
+docker run -it  alpine:3.18 cat /etc/os-release
 
-This repository can be added as an **extension** in MakeCode.
+docker run -it debian:bookworm cat /etc/os-release
 
-* open [https://arcade.makecode.com/](https://arcade.makecode.com/)
-* click on **New Project**
-* click on **Extensions** under the gearwheel menu
-* search for **https://github.com/saurabh500/makecodestuff** and import
+docker run -it redhat/ubi9:latest cat /etc/os-release
 
-## Edit this project ![Build status badge](https://github.com/saurabh500/makecodestuff/workflows/MakeCode/badge.svg)
-
-To edit this repository in MakeCode.
-
-* open [https://arcade.makecode.com/](https://arcade.makecode.com/)
-* click on **Import** then click on **Import URL**
-* paste **https://github.com/saurabh500/makecodestuff** and click import
-
-## Blocks preview
-
-This image shows the blocks code from the last commit in master.
-This image may take a few minutes to refresh.
-
-![A rendered view of the blocks](https://github.com/saurabh500/makecodestuff/raw/master/.github/makecode/blocks.png)
-
-#### Metadata (used for search, rendering)
-
-* for PXT/arcade
-<script src="https://makecode.com/gh-pages-embed.js"></script><script>makeCodeRender("{{ site.makecode.home_url }}", "{{ site.github.owner_name }}/{{ site.github.repository_name }}");</script>

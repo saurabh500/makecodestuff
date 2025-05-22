@@ -10,3 +10,7 @@ _site
 *.tgz
 .header.json
 .simstate.json
+
+.vscode
+.pytest_cache
+__pycache__
