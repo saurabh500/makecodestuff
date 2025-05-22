@@ -2,7 +2,10 @@
 
 dnf update
 
+dnf install -y python3 python3-pip 
+pip install pytest
+
 cd /workspace
 
-python tests.py --junitxml=results.xml
+pytest tests.py --junitxml=results.xml
 
